@@ -298,6 +298,7 @@ button svg {
 #practice .weights {
 	display: flex;
 	justify-content: space-between;
+	align-items: flex-start;
 	margin-top: 0;
 	padding-top: 4rem;
 	width: 100%;
@@ -306,9 +307,10 @@ button svg {
 
 #practice .weights .weightsSubset {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	/* grid-template-columns: repeat(3, 1fr); */
 	gap: 0.5em;
 	align-items: start;
+	/* border: solid red; */
 }
 
 #practice .weights .weightsSubset > div {
@@ -317,6 +319,15 @@ button svg {
 	border: 2px solid #dfcfbf;
 	border-radius: 0.3rem;
 	min-width: 4.5rem;
+}
+
+#practice .weights .weightsSubset.qwerty,
+.weightsSubset.alpha {
+	grid-template-columns: repeat(2, 1fr);
+}
+
+#practice .weights .weightsSubset.numeric {
+	grid-template-columns: repeat(3, 1fr);
 }
 
 #practice .weights .chars {
