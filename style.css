@@ -302,16 +302,13 @@ button svg {
 	padding-top: 4rem;
 	width: 100%;
 	position: relative;
-	/* border: solid blue; */
 }
 
 #practice .weights .weightsSubset {
-	display: flex;
-	flex-wrap: wrap;
-	/* justify-content: center; */
-	align-items: flex-start;
-	width: 25%;
-	border: solid red;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 0.5em;
+	align-items: start;
 }
 
 #practice .weights .weightsSubset > div {
@@ -320,14 +317,6 @@ button svg {
 	border: 2px solid #dfcfbf;
 	border-radius: 0.3rem;
 	min-width: 4.5rem;
-}
-
-#practice .weights .weightsSubset.numeric {
-	justify-content: center;
-}
-
-#practice .weights .weightsSubset.specialChars {
-	justify-content: right;
 }
 
 #practice .weights .chars {
