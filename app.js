@@ -28,7 +28,6 @@ class TypingPractice {
 		this._initWeights();
 		this._initEvents();
 		this._initBuffers();
-		this._initLines();
 		this.render();
 	}
 
@@ -137,46 +136,6 @@ class TypingPractice {
 		}
 		this.given = words.join(" ");
 		this.typed = "";
-	}
-
-	_initLines() {
-		const svg = this.dom.weights.querySelector(".lines");
-		const x1 = Math.round(svg.clientWidth / 2) - 0.5;
-		const y1 = -0.5;
-		const bg = "#fed";
-		const stroke = "#dfcfbf";
-		const strokeWidth = 2;
-
-		const makePath = (x1, y1, x2, y2) => {
-			// const radius = 12;
-			const radius = 24;
-			const path = makeConnectingPath(x1, y1, x2, y2, radius);
-			path.setAttributeNS(null, "stroke", stroke);
-			path.setAttributeNS(null, "stroke-width", strokeWidth * 0.75);
-			path.setAttributeNS(null, "fill", "none");
-			return path;
-		};
-
-		const makePoint = (x, y) => {
-			const radius = 3;
-			const circle = makeSvgElement("circle");
-			circle.setAttributeNS(null, "cx", x);
-			circle.setAttributeNS(null, "cy", y);
-			circle.setAttributeNS(null, "stroke", stroke);
-			circle.setAttributeNS(null, "stroke-width", strokeWidth);
-			circle.setAttributeNS(null, "fill", bg);
-			circle.setAttributeNS(null, "r", radius);
-			return circle;
-		};
-
-		this.dom.weights.querySelectorAll(":scope > div").forEach((d) => {
-			const x2 =
-				Math.round(d.offsetLeft + d.clientWidth / 2 + strokeWidth / 2) + 0.5;
-			const y2 = Math.round(d.offsetTop) + 0.5;
-			svg.append(makePath(x1, y1, x2, y2), makePoint(x2, y2));
-		});
-
-		svg.append(makePoint(x1, y1));
 	}
 
 	_makeCharset() {
@@ -429,34 +388,6 @@ function getLocal(key) {
 
 function escapeSpecialRegExpChars(str) {
 	return str.replace(/[-[\]{}()*+!<=:?.\/\\^$|#\s,]/g, "\\$&");
-}
-
-function makeSvgElement(tagName) {
-	return document.createElementNS("http://www.w3.org/2000/svg", tagName);
-}
-
-function makeConnectingPath(x1, y1, x2, y2, radius = 25) {
-	const dx = x2 - x1;
-	const dy = y2 - y1;
-	const my = Math.round(dy / 2) + 0.5;
-	const sx = Math.sign(dx);
-	const sy = Math.sign(dy);
-	const maxRadius = Math.min(Math.abs(dx / 2), Math.abs(dy / 2));
-	const r = radius > maxRadius ? maxRadius : radius;
-	const b = 0.667;
-
-	const cmds = [
-		`M ${x1} ${y1}`,
-		`v ${my - sy * r}`,
-		`c 0 ${sy * r * b}, ${sx * r * (1 - b)} ${sy * r}, ${sx * r} ${sy * r}`,
-		`h ${dx - sx * r * 2}`,
-		`c ${sx * r * b} 0, ${sx * r} ${sy * r * (1 - b)}, ${sx * r} ${sy * r}`,
-		`v ${my - sy * r}`,
-	];
-
-	const path = makeSvgElement("path");
-	path.setAttributeNS(null, "d", cmds.join(" "));
-	return path;
 }
 
 //
