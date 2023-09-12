@@ -1,5 +1,11 @@
 "use strict";
 
+const QWERTY_TOP_ROW_LEFT = "qwert";
+const QWERTY_TOP_ROW_RIGHT = "yuiop";
+const QWERTY_HOME_ROW_LEFT = "asdfg";
+const QWERTY_HOME_ROW_RIGHT = "hjkl;";
+const QWERTY_BOTTOM_ROW_LEFT = "zxcvb";
+const QWERTY_BOTTOM_ROW_RIGHT = "nm,./";
 const LETTERS_LOWER = "abcdefghijklmnopqrstuvwxyz";
 const LETTERS_UPPER = LETTERS_LOWER.toUpperCase();
 const DIGITS = "0123456789";
@@ -33,6 +39,12 @@ class TypingPractice {
 
 	_initWeights() {
 		const keys = [
+			"qwertyTopRowLeft",
+			"qwertyTopRowRight",
+			"qwertyHomeRowLeft",
+			"qwertyHomeRowRight",
+			"qwertyBottomRowLeft",
+			"qwertyBottomRowRight",
 			"lettersLower",
 			"lettersUpper",
 			"digits",
@@ -141,6 +153,12 @@ class TypingPractice {
 	_makeCharset() {
 		const s = this.weights;
 		return (
+			QWERTY_TOP_ROW_LEFT.repeat(s.qwertyTopRowLeft) +
+			QWERTY_TOP_ROW_RIGHT.repeat(s.qwertyTopRowRight) +
+			QWERTY_HOME_ROW_LEFT.repeat(s.qwertyHomeRowLeft) +
+			QWERTY_HOME_ROW_RIGHT.repeat(s.qwertyHomeRowRight) +
+			QWERTY_BOTTOM_ROW_LEFT.repeat(s.qwertyBottomRowLeft) +
+			QWERTY_BOTTOM_ROW_RIGHT.repeat(s.qwertyBottomRowRight) +
 			LETTERS_LOWER.repeat(s.lettersLower) +
 			LETTERS_UPPER.repeat(s.lettersUpper) +
 			DIGITS.repeat(s.digits) +
