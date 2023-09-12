@@ -3,9 +3,9 @@
 const LETTERS_LOWER = "abcdefghijklmnopqrstuvwxyz";
 const LETTERS_UPPER = LETTERS_LOWER.toUpperCase();
 const DIGITS = "0123456789";
-const NUMPAD_BOTTOM_ROW = "123";
-const NUMPAD_MID_ROW = "456";
-const NUMPAD_TOP_ROW = "789";
+const NUMPAD_123 = "123";
+const NUMPAD_456 = "456";
+const NUMPAD_789 = "789";
 const NUMPAD_ZERO = "0";
 const PUNCTUATION = "`~!@#$%^&*()_+-=[]\\{}|;':\",./<>?";
 
@@ -37,9 +37,9 @@ class TypingPractice {
 			"lettersLower",
 			"lettersUpper",
 			"digits",
-			"numpadBottomRow",
-			"numpadMidRow",
-			"numpadTopRow",
+			"numpad123",
+			"numpad456",
+			"numpad789",
 			"numpadZero",
 			"punctuation",
 		];
@@ -148,7 +148,8 @@ class TypingPractice {
 		const strokeWidth = 2;
 
 		const makePath = (x1, y1, x2, y2) => {
-			const radius = 12;
+			// const radius = 12;
+			const radius = 24;
 			const path = makeConnectingPath(x1, y1, x2, y2, radius);
 			path.setAttributeNS(null, "stroke", stroke);
 			path.setAttributeNS(null, "stroke-width", strokeWidth * 0.75);
@@ -184,9 +185,9 @@ class TypingPractice {
 			LETTERS_LOWER.repeat(s.lettersLower) +
 			LETTERS_UPPER.repeat(s.lettersUpper) +
 			DIGITS.repeat(s.digits) +
-			NUMPAD_BOTTOM_ROW.repeat(s.numpadBottomRow) +
-			NUMPAD_MID_ROW.repeat(s.numpadMidRow) +
-			NUMPAD_TOP_ROW.repeat(s.numpadTopRow) +
+			NUMPAD_123.repeat(s.numpad123) +
+			NUMPAD_456.repeat(s.numpad456) +
+			NUMPAD_789.repeat(s.numpad789) +
 			NUMPAD_ZERO.repeat(s.numpadZero) +
 			PUNCTUATION.repeat(s.punctuation)
 		);
