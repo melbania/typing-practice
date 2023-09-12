@@ -80,10 +80,10 @@ class TypingPractice {
 			e.preventDefault();
 		});
 
-		this.dom.weights.querySelectorAll(":scope > div").forEach((div) => {
+		this.dom.weights.querySelectorAll(".weightsSubset > div").forEach((div) => {
 			const getWeightKey = (child) => {
 				let elem = child;
-				while (elem.parentNode.className !== "weights") {
+				while (!elem.parentNode.classList.contains("weightsSubset")) {
 					elem = elem.parentNode;
 				}
 				const key = elem.className;
