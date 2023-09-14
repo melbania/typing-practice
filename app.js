@@ -1,19 +1,19 @@
 "use strict";
 
-const QWERTY_TOP_ROW_LEFT = "qwert";
-const QWERTY_TOP_ROW_RIGHT = "yuiop";
-const QWERTY_HOME_ROW_LEFT = "asdfg";
-const QWERTY_HOME_ROW_RIGHT = "hjkl;";
-const QWERTY_BOTTOM_ROW_LEFT = "zxcvb";
-const QWERTY_BOTTOM_ROW_RIGHT = "nm,./";
-const LETTERS_LOWER = "abcdefghijklmnopqrstuvwxyz";
-const LETTERS_UPPER = LETTERS_LOWER.toUpperCase();
-const DIGITS = "0123456789";
-const NUMPAD_123 = "123";
-const NUMPAD_456 = "456";
-const NUMPAD_789 = "789";
-const NUMPAD_ZERO = "0";
-const PUNCTUATION = "`~!@#$%^&*()_+-=[]\\{}|;':\",./<>?";
+// const QWERTY_TOP_ROW_LEFT = "qwert";
+// const QWERTY_TOP_ROW_RIGHT = "yuiop";
+// const QWERTY_HOME_ROW_LEFT = "asdfg";
+// const QWERTY_HOME_ROW_RIGHT = "hjkl;";
+// const QWERTY_BOTTOM_ROW_LEFT = "zxcvb";
+// const QWERTY_BOTTOM_ROW_RIGHT = "nm,./";
+// const LETTERS_LOWER = "abcdefghijklmnopqrstuvwxyz";
+// const LETTERS_UPPER = LETTERS_LOWER.toUpperCase();
+// const DIGITS = "0123456789";
+// const NUMPAD_123 = "123";
+// const NUMPAD_456 = "456";
+// const NUMPAD_789 = "789";
+// const NUMPAD_ZERO = "0";
+// const PUNCTUATION = "`~!@#$%^&*()_+-=[]\\{}|;':\",./<>?";
 
 const PRACTICE_GROUPS = {
 	qwertyTopRowLeft: "qwert",
@@ -80,7 +80,7 @@ class TypingPractice {
 		});
 
 		this._charsetRegExp = new RegExp(
-			`^[a-zA-Z0-9 ${escapeSpecialRegExpChars(PUNCTUATION)}]\$`
+			`^[a-zA-Z0-9 ${escapeSpecialRegExpChars(PRACTICE_GROUPS.punctuation)}]\$`
 		);
 
 		this.dom.input.addEventListener("keydown", (e) => {
