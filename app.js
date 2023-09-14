@@ -15,6 +15,23 @@ const NUMPAD_789 = "789";
 const NUMPAD_ZERO = "0";
 const PUNCTUATION = "`~!@#$%^&*()_+-=[]\\{}|;':\",./<>?";
 
+const PRACTICE_GROUPS = {
+	qwertyTopRowLeft: "qwert",
+	qwertyTopRowRight: "yuiop",
+	qwertyHomeRowLeft: "asdfg",
+	qwertyHomeRowRight: "hjkl;",
+	qwertyBottomRowLeft: "zxcvb",
+	qwertyBottomRowRight: "nm,./",
+	lettersLower: "abcdefghijklmnopqrstuvwxyz",
+	lettersUpper: "abcdefghijklmnopqrstuvwxyz".toUpperCase(),
+	digits: "0123456789",
+	numpad123: "123",
+	numpad456: "456",
+	numpad789: "789",
+	numpadZero: "0",
+	punctuation: "`~!@#$%^&*()_+-=[]\\{}|;':\",./<>?",
+};
+
 class TypingPractice {
 	constructor(root) {
 		this.dom = {
@@ -38,22 +55,7 @@ class TypingPractice {
 	}
 
 	_initWeights() {
-		const keys = [
-			"qwertyTopRowLeft",
-			"qwertyTopRowRight",
-			"qwertyHomeRowLeft",
-			"qwertyHomeRowRight",
-			"qwertyBottomRowLeft",
-			"qwertyBottomRowRight",
-			"lettersLower",
-			"lettersUpper",
-			"digits",
-			"numpad123",
-			"numpad456",
-			"numpad789",
-			"numpadZero",
-			"punctuation",
-		];
+		const keys = [...Object.keys(PRACTICE_GROUPS)];
 		this.weights = keys.reduce((obj, k) => {
 			const v = getLocal(k);
 			return { ...obj, [k]: typeof v === "undefined" ? 1 : v };
@@ -92,53 +94,55 @@ class TypingPractice {
 			e.preventDefault();
 		});
 
-		this.dom.weights.querySelectorAll(".weightsSubset > div").forEach((div) => {
-			const getWeightKey = (child) => {
-				let elem = child;
-				while (!elem.parentNode.classList.contains("weightsSubset")) {
-					elem = elem.parentNode;
-				}
-				const key = elem.className;
-				if (!Object.getOwnPropertyNames(this.weights).includes(key)) {
-					throw Error(`Unknown user setting '${key}'.`);
-				}
-				return key;
-			};
+		this.dom.weights
+			.querySelectorAll(":scope > .weightsSubset > div")
+			.forEach((div) => {
+				const getWeightKey = (child) => {
+					let elem = child;
+					while (!elem.parentNode.classList.contains("weightsSubset")) {
+						elem = elem.parentNode;
+					}
+					const key = elem.className;
+					if (!Object.getOwnPropertyNames(this.weights).includes(key)) {
+						throw Error(`Unknown user setting '${key}'.`);
+					}
+					return key;
+				};
 
-			div.addEventListener("wheel", (e) => {
-				const key = getWeightKey(e.target);
-				const v = this.weights[key] - Math.sign(e.deltaY);
-				if (v >= 0 && v <= 99) {
-					this.weights[key] = v;
-					this._saveWeights();
-					this._initBuffers();
-					this.render();
-				}
-				e.preventDefault();
-			});
+				div.addEventListener("wheel", (e) => {
+					const key = getWeightKey(e.target);
+					const v = this.weights[key] - Math.sign(e.deltaY);
+					if (v >= 0 && v <= 99) {
+						this.weights[key] = v;
+						this._saveWeights();
+						this._initBuffers();
+						this.render();
+					}
+					e.preventDefault();
+				});
 
-			div.querySelector("button.incr").addEventListener("click", (e) => {
-				const key = getWeightKey(e.target);
-				const v = this.weights[key] + 1;
-				if (v <= 99) {
-					this.weights[key] = v;
-					this._saveWeights();
-					this._initBuffers();
-					this.render();
-				}
-			});
+				div.querySelector("button.incr").addEventListener("click", (e) => {
+					const key = getWeightKey(e.target);
+					const v = this.weights[key] + 1;
+					if (v <= 99) {
+						this.weights[key] = v;
+						this._saveWeights();
+						this._initBuffers();
+						this.render();
+					}
+				});
 
-			div.querySelector("button.decr").addEventListener("click", (e) => {
-				const key = getWeightKey(e.target);
-				const v = this.weights[key] - 1;
-				if (v >= 0) {
-					this.weights[key] = v;
-					this._saveWeights();
-					this._initBuffers();
-					this.render();
-				}
+				div.querySelector("button.decr").addEventListener("click", (e) => {
+					const key = getWeightKey(e.target);
+					const v = this.weights[key] - 1;
+					if (v >= 0) {
+						this.weights[key] = v;
+						this._saveWeights();
+						this._initBuffers();
+						this.render();
+					}
+				});
 			});
-		});
 	}
 
 	_initBuffers() {
@@ -152,22 +156,11 @@ class TypingPractice {
 
 	_makeCharset() {
 		const s = this.weights;
-		return (
-			QWERTY_TOP_ROW_LEFT.repeat(s.qwertyTopRowLeft) +
-			QWERTY_TOP_ROW_RIGHT.repeat(s.qwertyTopRowRight) +
-			QWERTY_HOME_ROW_LEFT.repeat(s.qwertyHomeRowLeft) +
-			QWERTY_HOME_ROW_RIGHT.repeat(s.qwertyHomeRowRight) +
-			QWERTY_BOTTOM_ROW_LEFT.repeat(s.qwertyBottomRowLeft) +
-			QWERTY_BOTTOM_ROW_RIGHT.repeat(s.qwertyBottomRowRight) +
-			LETTERS_LOWER.repeat(s.lettersLower) +
-			LETTERS_UPPER.repeat(s.lettersUpper) +
-			DIGITS.repeat(s.digits) +
-			NUMPAD_123.repeat(s.numpad123) +
-			NUMPAD_456.repeat(s.numpad456) +
-			NUMPAD_789.repeat(s.numpad789) +
-			NUMPAD_ZERO.repeat(s.numpadZero) +
-			PUNCTUATION.repeat(s.punctuation)
-		);
+
+		return Object.entries(PRACTICE_GROUPS).reduce((str, entry) => {
+			const [key, val] = entry;
+			return str + val.repeat(s[key]);
+		}, "");
 	}
 
 	_makeRandomWord() {
