@@ -113,6 +113,7 @@
 				</section>
 				<div class="weights">
 					<div class="weightsSubset qwerty">
+						<p>keyboard</p>
 						<div class="qwertyTopRowLeft">
 							<div class="chars">qwert</div>
 							<div class="weight">
@@ -205,6 +206,7 @@
 					</div>
 
 					<div class="weightsSubset alpha">
+						<p>alpha</p>
 						<div class="lettersUpper">
 							<div class="chars">A&ndash;Z</div>
 							<div class="weight">
@@ -236,9 +238,10 @@
 						</div>
 					</div>
 
-					<div class="weightsSubset numeric">
-						<div class="numpad123">
-							<div class="chars">123</div>
+					<div class="weightsSubset numpad">
+						<p>numpad</p>
+						<div class="numpad789">
+							<div class="chars">789</div>
 							<div class="weight">
 								<span>1</span>
 								<div class="controls">
@@ -267,8 +270,8 @@
 							</div>
 						</div>
 
-						<div class="numpad789">
-							<div class="chars">789</div>
+						<div class="numpad123">
+							<div class="chars">123</div>
 							<div class="weight">
 								<span>1</span>
 								<div class="controls">
@@ -296,7 +299,9 @@
 								</div>
 							</div>
 						</div>
-
+					</div>
+					<div class="weightsSubset all-numbers">
+						<p>numbers</p>
 						<div class="digits">
 							<div class="chars">0&ndash;9</div>
 							<div class="weight">
@@ -313,7 +318,105 @@
 						</div>
 					</div>
 
-					<div class="weightsSubset specialChars">
+					<div class="weightsSubset specialChars fine">
+						<p>brackets</p>
+						<div class="brackets">
+							<div class="chars">(){}[]<></div>
+							<div class="weight">
+								<span>1</span>
+								<div class="controls">
+									<button class="incr">
+										<svg><use xlink:href="#plus" /></svg>
+									</button>
+									<button class="decr">
+										<svg><use xlink:href="#minus" /></svg>
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<p>logical</p>
+						<div class="logical">
+							<div class="chars">~!&|^?</div>
+							<div class="weight">
+								<span>1</span>
+								<div class="controls">
+									<button class="incr">
+										<svg><use xlink:href="#plus" /></svg>
+									</button>
+									<button class="decr">
+										<svg><use xlink:href="#minus" /></svg>
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<p>math</p>
+						<div class="math">
+							<div class="chars">%+=-*\</div>
+							<div class="weight">
+								<span>1</span>
+								<div class="controls">
+									<button class="incr">
+										<svg><use xlink:href="#plus" /></svg>
+									</button>
+									<button class="decr">
+										<svg><use xlink:href="#minus" /></svg>
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<p>sep</p>
+						<div class="separators">
+							<div class="chars">_.,;:</div>
+							<div class="weight">
+								<span>1</span>
+								<div class="controls">
+									<button class="incr">
+										<svg><use xlink:href="#plus" /></svg>
+									</button>
+									<button class="decr">
+										<svg><use xlink:href="#minus" /></svg>
+									</button>
+								</div>
+							</div>
+						</div>
+						<p>string</p>
+						<div class="string">
+							<div class="chars">`'"/</div>
+							<div class="weight">
+								<span>1</span>
+								<div class="controls">
+									<button class="incr">
+										<svg><use xlink:href="#plus" /></svg>
+									</button>
+									<button class="decr">
+										<svg><use xlink:href="#minus" /></svg>
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<p>deco</p>
+						<div class="decorators">
+							<div class="chars">@#$</div>
+							<div class="weight">
+								<span>1</span>
+								<div class="controls">
+									<button class="incr">
+										<svg><use xlink:href="#plus" /></svg>
+									</button>
+									<button class="decr">
+										<svg><use xlink:href="#minus" /></svg>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="weightsSubset specialChars coarse">
+						<p>special</p>
 						<div class="punctuation">
 							<div class="chars">!@#&hellip;</div>
 							<div class="weight">
