@@ -1,12 +1,12 @@
 "use strict";
 
 const PRACTICE_GROUPS = {
-	topLeft: "qwert",
-	topRight: "yuiop",
-	homeLeft: "asdfg",
-	homeRight: "hjkl;",
-	bottomLeft: "zxcvb",
-	bottomRight: "nm,./",
+	topLeft: "",
+	topRight: "",
+	homeLeft: "",
+	homeRight: "",
+	bottomLeft: "",
+	bottomRight: "",
 	lettersLower: "abcdefghijklmnopqrstuvwxyz",
 	lettersUpper: "abcdefghijklmnopqrstuvwxyz".toUpperCase(),
 	digits: "0123456789",
@@ -34,7 +34,7 @@ const KEYBOARDS = {
 		home: { left: "arstd", right: "hneio" },
 		bottom: { left: "zxcvb", right: "km,./" },
 	},
-	colemakDH: {
+	colemakdh: {
 		top: { left: "qwfpb", right: "jluy;" },
 		home: { left: "arstg", right: "mneio" },
 		bottom: { left: "zxcdv", right: "kh,./" },
@@ -49,7 +49,7 @@ const KEYBOARDS = {
 		home: { left: "aoeui", right: "dhtns" },
 		bottom: { left: ";qjkx", right: "bmwvz" },
 	},
-	programmersDvorak: {
+	programmersdvorak: {
 		top: { left: ";,.py", right: "fgcrl" },
 		home: { left: "aoeui", right: "dhtns" },
 		bottom: { left: "'qjkx", right: "bmwvz" },
@@ -64,6 +64,7 @@ class TypingPractice {
 			typed: root.querySelector(".typed"),
 			input: root.querySelector("input"),
 			count: root.querySelector(".count"),
+			select: root.querySelector("#keyboard-select"),
 			weights: root.querySelector(".weights"),
 		};
 
@@ -71,12 +72,26 @@ class TypingPractice {
 		this.focused = false;
 		this.maxWordLength = 9;
 		this.totalCharsTyped = getLocal("totalCharsTyped") || 0;
+		this.keyboardLayout = getLocal("keyboardLayout") || "qwerty";
 
+		this._initKeyboardPracticeGroups();
 		this._initWeights();
 		this._initEvents();
 		this._initBuffers();
 		this.render();
 	}
+
+	_initKeyboardPracticeGroups() {
+		const rows = KEYBOARDS[this.keyboardLayout];
+		for (var row in rows) {
+			for (var side in rows[row]) {
+				const key = row + side[0].toUpperCase() + side.slice(1);
+				PRACTICE_GROUPS[key] = rows[row][side];
+			}
+		}
+	}
+
+	_getKeyboardPracticeGroupKeys(layout) {}
 
 	_initWeights() {
 		const keys = [...Object.keys(PRACTICE_GROUPS)];
@@ -115,6 +130,13 @@ class TypingPractice {
 			} else {
 				return;
 			}
+			e.preventDefault();
+		});
+
+		this.dom.select.addEventListener("change", (e) => {
+			const layout = this.dom.select.value;
+			console.log(layout);
+			console.log(KEYBOARDS[layout]);
 			e.preventDefault();
 		});
 
@@ -433,3 +455,4 @@ const metronome = new Metronome(document.getElementById("metronome"));
 const practice = new TypingPractice(document.getElementById("practice"));
 
 practice.focus();
+console.log(window.localStorage);
