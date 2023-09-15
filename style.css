@@ -305,6 +305,25 @@ button svg {
 	position: relative;
 }
 
+#practice .weights .controlGrain {
+	display: flex;
+	justify-content: space-around;
+	align-items: flex-start;
+}
+
+#practice .weights .controlGrain.fine {
+	width: 75%;
+	/* border: solid red; */
+}
+
+#practice .weights .controlGrain.coarse {
+	display: grid;
+	gap: 0.5em;
+	/* align-items: center; */
+	width: 25%;
+	/* border: solid blue; */
+}
+
 #practice .weights .weightsSubset {
 	display: grid;
 	gap: 0.5em;

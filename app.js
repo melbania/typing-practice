@@ -86,7 +86,7 @@ class TypingPractice {
 		});
 
 		this.dom.weights
-			.querySelectorAll(":scope > .weightsSubset > div")
+			.querySelectorAll(":scope > .controlGrain > .weightsSubset > div")
 			.forEach((div) => {
 				const getWeightKey = (child) => {
 					let elem = child;
