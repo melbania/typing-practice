@@ -321,7 +321,7 @@ button svg {
 	gap: 0.5em;
 	/* align-items: center; */
 	width: 25%;
-	/* border: solid blue; */
+	border-left: solid #000;
 }
 
 #practice .weights .weightsSubset {
