@@ -1,12 +1,12 @@
 "use strict";
 
 const PRACTICE_GROUPS = {
-	qwertyTopRowLeft: "qwert",
-	qwertyTopRowRight: "yuiop",
-	qwertyHomeRowLeft: "asdfg",
-	qwertyHomeRowRight: "hjkl;",
-	qwertyBottomRowLeft: "zxcvb",
-	qwertyBottomRowRight: "nm,./",
+	topLeft: "qwert",
+	topRight: "yuiop",
+	homeLeft: "asdfg",
+	homeRight: "hjkl;",
+	bottomLeft: "zxcvb",
+	bottomRight: "nm,./",
 	lettersLower: "abcdefghijklmnopqrstuvwxyz",
 	lettersUpper: "abcdefghijklmnopqrstuvwxyz".toUpperCase(),
 	digits: "0123456789",
@@ -21,6 +21,39 @@ const PRACTICE_GROUPS = {
 	string: "`'\"/",
 	decorators: "@#$",
 	punctuation: "`~!@#$%^&*()_+-=[]\\{}|;':\",./<>?",
+};
+
+const KEYBOARDS = {
+	qwerty: {
+		top: { left: "qwert", right: "yuiop" },
+		home: { left: "asdfg", right: "hjkl;" },
+		bottom: { left: "zxcvb", right: "nm,./" },
+	},
+	colemak: {
+		top: { left: "qwfpg", right: "jkuy;" },
+		home: { left: "arstd", right: "hneio" },
+		bottom: { left: "zxcvb", right: "km,./" },
+	},
+	colemakDH: {
+		top: { left: "qwfpb", right: "jluy;" },
+		home: { left: "arstg", right: "mneio" },
+		bottom: { left: "zxcdv", right: "kh,./" },
+	},
+	workman: {
+		top: { left: "qdrwb", right: "jfup;" },
+		home: { left: "ashtg", right: "yneoi" },
+		bottom: { left: "zxmcv", right: "kl,./" },
+	},
+	dvorak: {
+		top: { left: "',.py", right: "fgcrl" },
+		home: { left: "aoeui", right: "dhtns" },
+		bottom: { left: ";qjkx", right: "bmwvz" },
+	},
+	programmersDvorak: {
+		top: { left: ";,.py", right: "fgcrl" },
+		home: { left: "aoeui", right: "dhtns" },
+		bottom: { left: "'qjkx", right: "bmwvz" },
+	},
 };
 
 class TypingPractice {
