@@ -330,9 +330,24 @@ button svg {
 	align-items: start;
 }
 
-#practice .weights .weightsSubset > p {
+#practice .weights .weightsSubset > label,
+select,
+p {
 	grid-column: 1/-1;
 	text-align: center;
+}
+
+#practice .weights .weightsSubset > select {
+	appearance: none;
+	background: url(/assets/caret-down-outline.svg) no-repeat right;
+	background-size: contain;
+	background-color: #efdfcf;
+	border: solid #dfcfbf;
+	padding: 5px;
+}
+
+#practice .weights .weightsSubset > select:focus {
+	outline: none;
 }
 
 #practice .weights .weightsSubset > div {
