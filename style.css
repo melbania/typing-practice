@@ -383,6 +383,10 @@ p {
 	background: #efdfcf;
 }
 
+#practice .weights > div .weight > span.active {
+	background: #cfc0b2;
+}
+
 #practice .weights > div .weight > * {
 	display: flex;
 	justify-content: center;

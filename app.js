@@ -302,7 +302,14 @@ class TypingPractice {
 	_renderWeights() {
 		Object.getOwnPropertyNames(this.weights).forEach((k) => {
 			const elem = this.dom.weights.querySelector(`.${k} .weight span`);
-			elem.innerHTML = this.weights[k];
+			const weightVal = this.weights[k];
+
+			elem.innerHTML = weightVal;
+			if (weightVal > 0) {
+				elem.classList.add("active");
+			} else {
+				elem.classList.remove("active");
+			}
 		});
 	}
 
