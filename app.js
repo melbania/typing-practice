@@ -82,16 +82,24 @@ class TypingPractice {
 	}
 
 	_initKeyboardPracticeGroups() {
-		const rows = KEYBOARDS[this.keyboardLayout];
-		for (var row in rows) {
-			for (var side in rows[row]) {
-				const key = row + side[0].toUpperCase() + side.slice(1);
-				PRACTICE_GROUPS[key] = rows[row][side];
-			}
-		}
+		const layoutData = this._getLayoutData(KEYBOARDS[this.keyboardLayout]);
+		this._setKeyboardPracticeGroups(layoutData);
 	}
 
-	_getKeyboardPracticeGroupKeys(layout) {}
+	_getLayoutData(layout) {
+		const groupData = {};
+		for (var row in layout) {
+			for (var side in layout[row]) {
+				const key = row + side[0].toUpperCase() + side.slice(1);
+				groupData[key] = layout[row][side];
+			}
+		}
+		return groupData;
+	}
+
+	_setKeyboardPracticeGroups(data) {
+		Object.keys(data).forEach((k) => (PRACTICE_GROUPS[k] = data[k]));
+	}
 
 	_initWeights() {
 		const keys = [...Object.keys(PRACTICE_GROUPS)];
@@ -455,4 +463,3 @@ const metronome = new Metronome(document.getElementById("metronome"));
 const practice = new TypingPractice(document.getElementById("practice"));
 
 practice.focus();
-console.log(window.localStorage);
