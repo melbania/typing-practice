@@ -149,8 +149,8 @@ class TypingPractice {
 			Object.entries(layoutData).forEach(([k, v]) => {
 				this.dom.root.querySelector(`.${k} > .chars`).innerHTML = v;
 			});
-
-			e.preventDefault();
+			this._initBuffers();
+			this.render();
 		});
 
 		this.dom.weights
