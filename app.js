@@ -143,8 +143,13 @@ class TypingPractice {
 
 		this.dom.select.addEventListener("change", (e) => {
 			const layout = this.dom.select.value;
-			console.log(layout);
-			console.log(KEYBOARDS[layout]);
+			const layoutData = this._getLayoutData(KEYBOARDS[layout]);
+			this.keyboardLayout = layout;
+			this._setKeyboardPracticeGroups(layoutData);
+			Object.entries(layoutData).forEach(([k, v]) => {
+				this.dom.root.querySelector(`.${k} > .chars`).innerHTML = v;
+			});
+
 			e.preventDefault();
 		});
 
