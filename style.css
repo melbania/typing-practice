@@ -380,7 +380,7 @@ button.reset:focus {
 	background: #dfcfbf;
 }
 
-button.reset#reset-specialChars--fine {
+button.reset#reset-specialChars-fine {
 	grid-row-start: 7;
 	grid-column-end: span 2;
 }
