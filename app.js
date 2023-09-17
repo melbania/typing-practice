@@ -76,6 +76,7 @@ class TypingPractice {
 
 		this._initKeyboardPracticeGroups();
 		this._initWeights();
+		this._initSelect();
 		this._initEvents();
 		this._initBuffers();
 		this.render();
@@ -115,6 +116,15 @@ class TypingPractice {
 		);
 	}
 
+	_initSelect() {
+		const layout = this.keyboardLayout;
+		this.dom.select.value = layout;
+		const layoutData = this._getLayoutData(KEYBOARDS[layout]);
+		Object.entries(layoutData).forEach(([k, v]) => {
+			this.dom.root.querySelector(`.${k} > .chars`).innerHTML = v;
+		});
+	}
+
 	_initEvents() {
 		this.dom.input.addEventListener("focus", () => {
 			this.focused = true;
@@ -151,6 +161,7 @@ class TypingPractice {
 			});
 			this._initBuffers();
 			this.render();
+			setLocal("keyboardLayout", layout);
 		});
 
 		this.dom.weights
