@@ -309,6 +309,7 @@ button svg {
 	display: flex;
 	justify-content: space-around;
 	align-items: flex-start;
+	height: 100%;
 }
 
 #practice .weights .controlGrain.fine {
@@ -358,13 +359,30 @@ p {
 	min-width: 4.5rem;
 }
 
-#practice .weights .weightsSubset.qwerty {
+#practice .weights .weightsSubset.keyboard {
 	grid-template-columns: repeat(2, 1fr);
 }
 
 #practice .weights .weightsSubset.specialChars.fine {
-	grid-template-rows: repeat(6, auto);
+	grid-template-rows: repeat(7, auto);
 	grid-auto-flow: column;
+}
+
+button.reset {
+	grid-column: 1/-1;
+	background: #efdfcf;
+	border: 2px solid #dfcfbf;
+	border-radius: 0.3rem;
+}
+
+button.reset:hover,
+button.reset:focus {
+	background: #dfcfbf;
+}
+
+button.reset#reset-specialChars--fine {
+	grid-row-start: 7;
+	grid-column-end: span 2;
 }
 
 #practice .weights .weightsSubset.specialChars.fine > p {
