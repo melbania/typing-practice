@@ -111,7 +111,10 @@ class TypingPractice {
 		const keys = [...Object.keys(PRACTICE_GROUPS)];
 		this.weights = keys.reduce((obj, k) => {
 			const v = getLocal(k);
-			return { ...obj, [k]: typeof v === "undefined" ? 1 : v };
+			return {
+				...obj,
+				[k]: typeof v === "undefined" ? (k.includes("coarse") ? 1 : 0) : v,
+			};
 		}, {});
 	}
 
