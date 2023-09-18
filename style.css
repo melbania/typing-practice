@@ -331,9 +331,7 @@ button svg {
 	align-items: start;
 }
 
-#practice .weights .weightsSubset > label,
-select,
-p {
+#practice .weights .weightsSubset > :is(label, select, p) {
 	grid-column: 1/-1;
 	text-align: center;
 }
