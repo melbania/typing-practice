@@ -213,6 +213,23 @@ class TypingPractice {
 					}
 				});
 			});
+
+		this.dom.weights.querySelectorAll("button.reset").forEach((button) => {
+			button.addEventListener("click", (e) => {
+				const buttonClasslist = e.target.id.split("-").slice(1).join(".");
+				[
+					...this.dom.weights.querySelectorAll(
+						`.weightsSubset.${buttonClasslist} > div`
+					),
+				]
+					.map((w) => w.className)
+					.forEach((k) => (this.weights[k] = 0));
+
+				this._saveWeights();
+				this._initBuffers();
+				this.render();
+			});
+		});
 	}
 
 	_initBuffers() {
@@ -482,7 +499,12 @@ function escapeSpecialRegExpChars(str) {
 // END utils
 //
 
+window.localStorage.clear();
+console.log(window.localStorage);
+
 const metronome = new Metronome(document.getElementById("metronome"));
 const practice = new TypingPractice(document.getElementById("practice"));
 
 practice.focus();
+
+console.log(window.localStorage);
