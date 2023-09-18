@@ -1,26 +1,26 @@
 "use strict";
 
 const PRACTICE_GROUPS = {
-	topLeft: "",
-	topRight: "",
-	homeLeft: "",
-	homeRight: "",
-	bottomLeft: "",
-	bottomRight: "",
-	lettersLower: "abcdefghijklmnopqrstuvwxyz",
-	lettersUpper: "abcdefghijklmnopqrstuvwxyz".toUpperCase(),
-	digits: "0123456789",
+	keyboardTopLeft: "",
+	keyboardTopRight: "",
+	keyboardHomeLeft: "",
+	keyboardHomeRight: "",
+	keyboardBottomLeft: "",
+	keyboardBottomRight: "",
 	numpad123: "123",
 	numpad456: "456",
 	numpad789: "789",
 	numpadZero: "0",
-	brackets: "(){}[]<>",
-	logical: "~!&|^?",
-	math: "%+=-*\\",
-	separators: "_.,;:",
-	string: "`'\"/",
-	decorators: "@#$",
-	punctuation: "`~!@#$%^&*()_+-=[]\\{}|;':\",./<>?",
+	specialBrackets: "(){}[]<>",
+	specialLogical: "~!&|^?",
+	specialMath: "%+=-*\\",
+	specialSeparators: "_.,;:",
+	specialString: "`'\"/",
+	specialDecorators: "@#$",
+	coarseLettersLower: "abcdefghijklmnopqrstuvwxyz",
+	coarseLettersUpper: "abcdefghijklmnopqrstuvwxyz".toUpperCase(),
+	coarseDigits: "0123456789",
+	coarsePunctuation: "`~!@#$%^&*()_+-=[]\\{}|;':\",./<>?",
 };
 
 const KEYBOARDS = {
@@ -88,13 +88,18 @@ class TypingPractice {
 	}
 
 	_getLayoutData(layout) {
+		const toTitle = (str) => {
+			return str[0].toUpperCase() + str.slice(1);
+		};
+
 		const groupData = {};
 		for (var row in layout) {
 			for (var side in layout[row]) {
-				const key = row + side[0].toUpperCase() + side.slice(1);
+				const key = "keyboard" + toTitle(row) + toTitle(side);
 				groupData[key] = layout[row][side];
 			}
 		}
+
 		return groupData;
 	}
 
@@ -137,7 +142,9 @@ class TypingPractice {
 		});
 
 		this._charsetRegExp = new RegExp(
-			`^[a-zA-Z0-9 ${escapeSpecialRegExpChars(PRACTICE_GROUPS.punctuation)}]\$`
+			`^[a-zA-Z0-9 ${escapeSpecialRegExpChars(
+				PRACTICE_GROUPS.coarsePunctuation
+			)}]\$`
 		);
 
 		this.dom.input.addEventListener("keydown", (e) => {
@@ -330,6 +337,7 @@ class TypingPractice {
 	_renderWeights() {
 		Object.getOwnPropertyNames(this.weights).forEach((k) => {
 			const elem = this.dom.weights.querySelector(`.${k} .weight span`);
+
 			const weightVal = this.weights[k];
 
 			elem.innerHTML = weightVal;
@@ -499,12 +507,7 @@ function escapeSpecialRegExpChars(str) {
 // END utils
 //
 
-window.localStorage.clear();
-console.log(window.localStorage);
-
 const metronome = new Metronome(document.getElementById("metronome"));
 const practice = new TypingPractice(document.getElementById("practice"));
 
 practice.focus();
-
-console.log(window.localStorage);
