@@ -1,3 +1,13 @@
+:root {
+	/* === COLORS: climech theme === */
+	--color-base: #fed;
+	--color-accent--lt: #efdfcf;
+	--color-accent--mid: #dfcfbf;
+	--color-accent--dk: #ccbeb1;
+	--color-error: #ff334499;
+	--color-black: #000;
+}
+
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -50,7 +60,7 @@
 html {
 	font-family: "Iosevka", monospace;
 	font-size: 15px;
-	background: #fed;
+	background: var(--color-base);
 }
 
 body {
@@ -118,7 +128,7 @@ button {
 
 button:hover,
 button:focus {
-	background: #dfcfbf;
+	background: var(--color-accent--mid);
 	outline: none;
 }
 
@@ -141,7 +151,7 @@ button svg {
 	right: 0;
 	width: 120px;
 	height: 120px;
-	background: #000;
+	background: var(--color-black);
 	transform: translate(60px, -60px) rotate(45deg);
 	overflow: hidden;
 	z-index: 1000;
@@ -158,7 +168,7 @@ button svg {
 #github-link svg {
 	width: 32px;
 	height: 32px;
-	fill: #fed;
+	fill: var(--color-base);
 }
 
 #welcome > * + * {
@@ -169,11 +179,11 @@ button svg {
 #metronome {
 	display: inline-flex;
 	vertical-align: middle;
-	border: 2px solid #dfcfbf;
+	border: 2px solid var(--color-accent--mid);
 	border-radius: 0.3rem;
 	height: 1.6rem;
 	line-height: 1.35rem;
-	background: #efdfcf;
+	background: var(--color-accent--lt);
 }
 
 #metronome > * {
@@ -181,7 +191,7 @@ button svg {
 }
 
 #metronome > * + * {
-	border-left: 2px solid #dfcfbf;
+	border-left: 2px solid var(--color-accent--mid);
 }
 
 #metronome.on button.toggle .play,
@@ -214,7 +224,7 @@ button svg {
 	align-items: center;
 	height: 2.75rem;
 	padding: 0.5rem;
-	border: 2px solid #dfcfbf;
+	border: 2px solid var(--color-accent--mid);
 }
 
 #practice > section > div {
@@ -232,7 +242,7 @@ button svg {
 #practice > section.typed {
 	position: relative;
 	overflow: hidden;
-	background: #efdfcf;
+	background: var(--color-accent--lt);
 	margin-top: 0;
 	border-radius: 0 0 0.5rem 0.5rem;
 }
@@ -252,34 +262,34 @@ button svg {
 
 @keyframes blink {
 	0% {
-		background: #000;
-		color: #fed;
+		background: var(--color-black);
+		color: var(--color-base);
 	}
 	40% {
-		background: #000;
-		color: #fed;
+		background: var(--color-black);
+		color: var(--color-base);
 	}
 	50% {
 		background: transparent;
-		color: #000;
+		color: var(--color-black);
 	}
 	90% {
 		background: transparent;
-		color: #000;
+		color: var(--color-black);
 	}
 	100% {
-		background: #000;
-		color: #fed;
+		background: var(--color-black);
+		color: var(--color-base);
 	}
 }
 
 #practice > section.given > .hl {
-	background: #dfcfbf;
+	background: var(--color-accent--mid);
 }
 
 #practice > section.typed > .hl {
-	background: #000;
-	color: #fed;
+	background: var(--color-black);
+	color: var(--color-base);
 }
 
 #practice > section > .hl.animated {
@@ -291,8 +301,8 @@ button svg {
 }
 
 #practice > section > .err {
-	background: #ff334499;
-	color: #000;
+	background: var(--color-error);
+	color: var(--color-black);
 }
 
 #practice .weights {
@@ -305,85 +315,85 @@ button svg {
 	position: relative;
 }
 
-#practice .weights .controlGrain {
+#practice .weights .group-grain {
 	display: flex;
 	justify-content: space-around;
 	align-items: flex-start;
 	height: 100%;
 }
 
-#practice .weights .controlGrain.fine {
+#practice .weights .group-grain.fine {
 	width: 75%;
-	/* border: solid red; */
 }
 
-#practice .weights .controlGrain.coarse {
+#practice .weights .group-grain.coarse {
 	display: grid;
 	gap: 0.5em;
 	/* align-items: center; */
 	width: 25%;
-	border-left: solid #000;
+	border-left: solid var(--color-black);
 }
 
-#practice .weights .weightsSubset {
+#practice .weights .group {
 	display: grid;
 	gap: 0.5em;
 	align-items: start;
 }
 
-#practice .weights .weightsSubset > :is(label, select, p) {
+#practice .weights .group > :is(label, select, p) {
 	grid-column: 1/-1;
 	text-align: center;
 }
 
-#practice .weights .weightsSubset > select {
+#practice .weights .group > select {
 	appearance: none;
 	background: url(/assets/caret-down-outline.svg) no-repeat right;
 	background-size: contain;
-	background-color: #efdfcf;
-	border: solid #dfcfbf;
+	background-color: var(--color-accent--lt);
+	border: solid var(--color-accent--mid);
 	padding: 5px;
 }
 
-#practice .weights .weightsSubset > select:focus {
+#practice .weights .group > select:focus {
 	outline: none;
 }
 
-#practice .weights .weightsSubset > div {
+#practice .weights .group > div {
 	display: flex;
 	flex-direction: column;
-	border: 2px solid #dfcfbf;
+	border: 2px solid var(--color-accent--mid);
 	border-radius: 0.3rem;
 	min-width: 4.5rem;
+	overflow: hidden;
 }
 
-#practice .weights .weightsSubset.keyboard {
+#practice .weights .group.keyboard {
 	grid-template-columns: repeat(2, 1fr);
 }
 
-#practice .weights .weightsSubset.specialChars.fine {
+#practice .weights .group.special.fine {
 	grid-template-rows: repeat(7, auto);
 	grid-auto-flow: column;
 }
 
 button.reset {
 	grid-column: 1/-1;
-	background: #efdfcf;
-	border: 2px solid #dfcfbf;
+	background: var(--color-accent--lt);
+	border: 2px solid var(--color-accent--mid);
 	border-radius: 0.3rem;
 }
 
 button.reset:hover,
 button.reset:focus {
-	background: #dfcfbf;
+	background: var(--color-accent--mid);
 }
 
-button.reset#reset-specialChars-fine {
+button#reset-special-fine {
 	grid-row-start: 7;
 	grid-column-end: span 2;
 }
 
-#practice .weights .weightsSubset.specialChars.fine > p {
+#practice .weights .group.special.fine > p {
 	grid-column: unset;
 }
 
@@ -395,12 +405,12 @@ button.reset#reset-specialChars-fine {
 
 #practice .weights > div .weight {
 	display: flex;
-	border-top: 2px solid #dfcfbf;
-	background: #efdfcf;
+	border-top: 2px solid var(--color-accent--mid);
+	background: var(--color-accent--lt);
 }
 
 #practice .weights > div .weight > span.active {
-	background: #cfc0b2;
+	background: var(--color-accent--dk);
 }
 
 #practice .weights > div .weight > * {
@@ -410,7 +420,7 @@ button.reset#reset-specialChars-fine {
 }
 
 #practice .weights > div .weight > * + * {
-	border-left: 2px solid #dfcfbf;
+	border-left: 2px solid var(--color-accent--mid);
 }
 
 #practice .weights > div .weight > span {
@@ -431,5 +441,5 @@ button.reset#reset-specialChars-fine {
 }
 
 #practice .weights .controls > * + * {
-	border-top: 2px solid #dfcfbf;
+	border-top: 2px solid var(--color-accent--mid);
 }

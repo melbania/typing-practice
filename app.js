@@ -175,11 +175,11 @@ class TypingPractice {
 		});
 
 		this.dom.weights
-			.querySelectorAll(":scope > .controlGrain > .weightsSubset > div")
+			.querySelectorAll(":scope > .group-grain > .group > div")
 			.forEach((div) => {
 				const getWeightKey = (child) => {
 					let elem = child;
-					while (!elem.parentNode.classList.contains("weightsSubset")) {
+					while (!elem.parentNode.classList.contains("group")) {
 						elem = elem.parentNode;
 					}
 					const key = elem.className;
@@ -229,7 +229,7 @@ class TypingPractice {
 				const buttonClasslist = e.target.id.split("-").slice(1).join(".");
 				[
 					...this.dom.weights.querySelectorAll(
-						`.weightsSubset.${buttonClasslist} > div`
+						`.group.${buttonClasslist} > div`
 					),
 				]
 					.map((w) => w.className)
